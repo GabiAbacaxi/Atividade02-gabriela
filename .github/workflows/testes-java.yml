@@ -1,0 +1,31 @@
+name: Testes Automatizados - Calculadora
+on:   
+  push:
+  pull_request: 
+    branches:
+      main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "iniciando o Workflow"
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Listando arquivos
+        run: ls ${{github.workspace}}
+      - name: Status
+        run: echo "${{job.status}}"
+      - name: Configurando Ambiente 
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      - name: Rodando testes
+        run: mvn test
+
+        
+        
+        
+
+          
